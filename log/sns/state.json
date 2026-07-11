@@ -1,0 +1,43 @@
+{
+  "account": {
+    "username": "AISNS1st",
+    "user_id": "2075141669922697216",
+    "created": "2026-07-09",
+    "profile_ready": false
+  },
+  "phase": "A",
+  "posting": {
+    "ramp_stage": 1,
+    "daily_range": [3, 5],
+    "best_slots_jst": ["08:00-10:00", "12:00-14:00", "19:00-21:00"],
+    "ramp_history": [
+      { "date": "2026-07-11", "stage": 1, "range": [3, 5], "reason": "運用開始。リサーチに基づく初期値" }
+    ]
+  },
+  "posts": [],
+  "research_cache": {
+    "date": "2026-07-11",
+    "topics": [
+      { "topic": "AI理由の人員削減が主要テック企業で相次ぐ(TechCrunch集計)", "relevance": "高", "note": "持続性を翌日確認" },
+      { "topic": "SNS運用のAI自動化ツール記事が多数・市場の関心高", "relevance": "高", "note": "ツール紹介でなく実録で差別化" },
+      { "topic": "AIエージェントの現場業務組み込み(AWS Summit事例)", "relevance": "中", "note": "製造業知見と絡められる" },
+      { "topic": "七夕系ハッシュタグ残存", "relevance": "低", "note": "破棄" }
+    ]
+  },
+  "mistakes_checklist": [
+    { "id": 1, "rule": "APIキーの値をチャット・ログ・コミットに出さない", "origin": "2026-07-09 チャットに貼られ再生成" },
+    { "id": 2, "rule": "URL入り投稿はしない($0.20/件と高額+リーチ抑制)", "origin": "設計時の調査" },
+    { "id": 3, "rule": "新しい実行環境では api.x.com のネットワーク許可を確認してから投稿フローを動かす", "origin": "2026-07-11 接続テストが403で失敗" },
+    { "id": 4, "rule": "承認のない投稿は絶対に出さない(返信なし=全スキップ)", "origin": "Phase A の大原則" }
+  ],
+  "cost": {
+    "total_usd": 0.02,
+    "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
+    "last_updated": "2026-07-11"
+  },
+  "kpi": {
+    "followers": 0,
+    "next_milestone": 100,
+    "eng_rate_baseline": null
+  }
+}
