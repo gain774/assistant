@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""アイコン v4 最終: Claude配色ロボット(D1改)
-- クリーム背景 × 墨色ヘッド × コーラルバイザー(Claude パレットのオマージュ)
-- アンテナ先端は小さな4方向スパーク(ロゴ複製ではない控えめな引用)
-- 口のバーグラフを低く・短く修正(ドクロ感の解消)
+"""アイコン v5: ロボット以外のモチーフ3案(コーラル×クリーム×墨は継続)
+E1: 実験フラスコ(実験実況の本質)
+E2: 吹き出し+スパーク(AIが発信する、の直喩)
+E3: 上昇グラフ+スパーク(数字を公開して伸ばす)
 """
 import math
 
@@ -13,7 +13,6 @@ OUT = "/tmp/claude-0/-home-user-assistant/630a109f-8176-5850-bdb7-34e2b5c01edb/s
 
 CORAL = (217, 119, 87)
 CORAL_DEEP = (193, 95, 60)
-CORAL_LIGHT = (232, 150, 116)
 CREAM = (240, 238, 229)
 CREAM_HI = (248, 246, 239)
 INK = (38, 38, 37)
@@ -23,79 +22,88 @@ def lerp(c1, c2, t):
     return tuple(int(c1[i] + (c2[i] - c1[i]) * t) for i in range(3))
 
 
-img = Image.new("RGB", (S, S))
-px = img.load()
-for y in range(S):
-    c = lerp(CREAM_HI, CREAM, y / (S - 1))
-    for x in range(S):
-        px[x, y] = c
-d = ImageDraw.Draw(img)
-
-x0, y0, x1, y1 = 84, 116, 316, 324
-w = x1 - x0
-cx = (x0 + x1) / 2
-
-# アンテナ軸
-d.line([(cx, y0 - 34), (cx, y0 + 4)], fill=INK, width=12)
-
-# アンテナ先端: 小さな8方向スパーク(コーラル・長短交互)
-scx, scy = cx, y0 - 54
-for i in range(8):
-    a = math.radians(i * 45)
-    r = 26 if i % 2 == 0 else 15
-    x_t, y_t = scx + r * math.cos(a), scy + r * math.sin(a)
-    d.line([(scx, scy), (x_t, y_t)], fill=CORAL, width=9)
-    d.ellipse([x_t - 4.5, y_t - 4.5, x_t + 4.5, y_t + 4.5], fill=CORAL)
-d.ellipse([scx - 9, scy - 9, scx + 9, scy + 9], fill=CORAL)
-
-# 耳
-ear_w, ear_h = w * 0.11, w * 0.34
-ey = y0 + (y1 - y0) * 0.30
-d.rounded_rectangle([x0 - ear_w * 0.8, ey, x0 + ear_w * 0.2, ey + ear_h],
-                    radius=int(ear_w * 0.4), fill=INK)
-d.rounded_rectangle([x1 - ear_w * 0.2, ey, x1 + ear_w * 0.8, ey + ear_h],
-                    radius=int(ear_w * 0.4), fill=INK)
-
-# 頭
-d.rounded_rectangle([x0, y0, x1, y1], radius=int(w * 0.27), fill=INK)
-
-# バイザー(コーラル横グラデ)
-vx0, vx1 = x0 + w * 0.14, x1 - w * 0.14
-vy0 = y0 + (y1 - y0) * 0.28
-vy1 = vy0 + (y1 - y0) * 0.27
-vmask = Image.new("L", (S, S), 0)
-ImageDraw.Draw(vmask).rounded_rectangle([vx0, vy0, vx1, vy1],
-                                        radius=int((vy1 - vy0) / 2), fill=255)
-vgrad = Image.new("RGB", (S, S))
-vpx = vgrad.load()
-for x in range(S):
-    c = lerp(CORAL_LIGHT, CORAL_DEEP, x / (S - 1))
+def cream_bg():
+    img = Image.new("RGB", (S, S))
+    px = img.load()
     for y in range(S):
-        vpx[x, y] = c
-img.paste(vgrad, (0, 0), vmask)
+        c = lerp(CREAM_HI, CREAM, y / (S - 1))
+        for x in range(S):
+            px[x, y] = c
+    return img
 
-# 目(クリームの丸)
-ew = (vy1 - vy0) * 0.60
-ecy = (vy0 + vy1) / 2
-for ecx in (cx - w * 0.17, cx + w * 0.17):
-    d.ellipse([ecx - ew / 2, ecy - ew / 2, ecx + ew / 2, ecy + ew / 2], fill=CREAM_HI)
 
-# 口: バーグラフ(低め・短め・上向き成長)
-heights = [26, 40, 32, 52]
-bw, gap = 24, 16
-total = 4 * bw + 3 * gap
-bx = cx - total / 2
-by = y1 - (y1 - y0) * 0.13
-for i, h in enumerate(heights):
-    x = bx + i * (bw + gap)
-    d.rounded_rectangle([x, by - h, x + bw, by], radius=7, fill=CORAL)
+def spark(d, cx, cy, r_long, r_short, w, color, dot=True):
+    for i in range(8):
+        a = math.radians(i * 45)
+        r = r_long if i % 2 == 0 else r_short
+        xt, yt = cx + r * math.cos(a), cy + r * math.sin(a)
+        d.line([(cx, cy), (xt, yt)], fill=color, width=w)
+        hw = w / 2
+        d.ellipse([xt - hw, yt - hw, xt + hw, yt + hw], fill=color)
+    if dot:
+        d.ellipse([cx - w, cy - w, cx + w, cy + w], fill=color)
 
-img.save(f"{OUT}/icon_v4_final.png")
-img.resize((48, 48), Image.LANCZOS).save(f"{OUT}/icon_v4_final_48.png")
 
-sheet = Image.new("RGB", (S + 40 + 96, S + 40), (18, 18, 24))
-sheet.paste(img, (20, 20))
-sheet.paste(img.resize((96, 96), Image.LANCZOS), (S + 30, 20))
-sheet.paste(img.resize((48, 48), Image.LANCZOS), (S + 30, 140))
-sheet.save(f"{OUT}/icon_v4_final_sheet.png")
+# E1: 実験フラスコ(三角フラスコ+コーラルの液体+スパークの泡)
+def make_e1():
+    img = cream_bg()
+    d = ImageDraw.Draw(img)
+    # フラスコ本体(墨のシルエット): 首+三角ボディ
+    neck_w = 64
+    d.polygon([(200 - neck_w/2, 92), (200 + neck_w/2, 92),
+               (200 + neck_w/2, 168),
+               (312, 318), (300, 344), (100, 344), (88, 318),
+               (200 - neck_w/2, 168)], fill=INK)
+    d.rounded_rectangle([200 - neck_w/2 - 14, 76, 200 + neck_w/2 + 14, 104], radius=14, fill=INK)
+    # 液体(コーラル): ボディ下部
+    d.polygon([(147, 238), (253, 238), (296, 296), (290, 326), (110, 326), (104, 296)],
+              fill=CORAL)
+    # 泡 = 小スパーク(クリーム)
+    spark(d, 200, 280, 16, 9, 6, CREAM_HI)
+    spark(d, 156, 300, 11, 6, 5, CREAM_HI)
+    spark(d, 244, 305, 9, 5, 4, CREAM_HI)
+    # 上昇する泡(液面の上)
+    spark(d, 205, 210, 10, 6, 5, CORAL)
+    spark(d, 190, 140, 7, 4, 4, CORAL)
+    return img
+
+
+# E2: 吹き出し+スパーク(AIが発信する)
+def make_e2():
+    img = cream_bg()
+    d = ImageDraw.Draw(img)
+    # 吹き出し(墨)
+    d.rounded_rectangle([56, 84, 344, 296], radius=72, fill=INK)
+    d.polygon([(118, 270), (108, 352), (196, 292)], fill=INK)
+    # 中央にコーラルの大スパーク
+    spark(d, 200, 190, 74, 42, 22, CORAL)
+    return img
+
+
+# E3: 上昇グラフ+スパーク(数字を伸ばす)
+def make_e3():
+    img = cream_bg()
+    d = ImageDraw.Draw(img)
+    # バー(墨→コーラルへ、上昇)
+    bars = [(96, 96, INK), (156, 148, INK), (216, 204, CORAL_DEEP), (276, 268, CORAL)]
+    bw = 44
+    base = 330
+    for x, h, c in bars:
+        d.rounded_rectangle([x, base - h, x + bw, base], radius=14, fill=c)
+    # 最高点にスパーク
+    spark(d, 298, 96, 46, 26, 14, CORAL)
+    return img
+
+
+cands = {"E1": make_e1(), "E2": make_e2(), "E3": make_e3()}
+for k, im in cands.items():
+    im.save(f"{OUT}/icon_v5_{k}.png")
+
+sheet = Image.new("RGB", (S * 3 + 80, S + 140), (18, 18, 24))
+for i, (k, im) in enumerate(cands.items()):
+    x = 20 + i * (S + 20)
+    sheet.paste(im, (x, 20))
+    small = im.resize((48, 48), Image.LANCZOS)
+    sheet.paste(small, (x + S // 2 - 24, S + 60))
+sheet.save(f"{OUT}/icon_v5_sheet.png")
 print("done")
