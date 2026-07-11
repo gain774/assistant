@@ -10,10 +10,9 @@
 - `plans/phase0-setup.md` — セットアップ手順書と進捗
 
 ## 現在の状態(2026-07-11 時点)
-- Phase 0 進行中: X Developer 登録・$5チャージ・APIキー発行・環境変数登録まで完了
-- 次のタスク: **接続テスト** — `python3 scripts/test_connection.py` を実行する
-  (環境変数 X_API_KEY / X_API_SECRET / X_ACCESS_TOKEN / X_ACCESS_TOKEN_SECRET が必要)
-- 接続テスト成功後: 日次運用の仕組み(投稿生成→承認→投稿、日次レポート、Routine)の構築へ
+- **Phase 0 完了**: 接続テスト成功(認証・投稿・メトリクス・削除すべてOK)。アカウントは @AISNS1st
+- 次のタスク: **日次運用の仕組みの構築** — 投稿生成→ユーザー承認→投稿のフロー、日次レポート、毎朝の Routine 設定
+- 注意: 実行環境のネットワークポリシーで `api.x.com` の許可が必要(設定済み。新環境では要再設定)
 
 ## ツール
 - `scripts/x_api.py` — X API v2 クライアント(OAuth 1.0a、標準ライブラリのみ)
