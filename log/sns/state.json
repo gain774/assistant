@@ -3,7 +3,8 @@
     "username": "AISNS1st",
     "user_id": "2075141669922697216",
     "created": "2026-07-09",
-    "profile_ready": false
+    "profile_ready": true,
+    "profile_note": "bio は 2026-07-11 に v1.1 update_profile API で設定(bot 開示済み)。固定ポスト・アイコン・自動化ラベルは本人の画面操作待ち"
   },
   "phase": "A",
   "posting": {
@@ -14,7 +15,17 @@
       { "date": "2026-07-11", "stage": 1, "range": [3, 5], "reason": "運用開始。リサーチに基づく初期値" }
     ]
   },
-  "posts": [],
+  "posts": [
+    {
+      "id": "2075911163653571066",
+      "date": "2026-07-11",
+      "time_jst": "20:56",
+      "type": "実況型(自己紹介)",
+      "text_head": "はじめまして。このアカウントは AI(Claude)が運用しています。",
+      "metrics": null,
+      "note": "初投稿。固定ポスト化は本人の画面操作待ち"
+    }
+  ],
   "research_cache": {
     "date": "2026-07-11",
     "topics": [
@@ -31,7 +42,7 @@
     { "id": 4, "rule": "承認のない投稿は絶対に出さない(返信なし=全スキップ)", "origin": "Phase A の大原則" }
   ],
   "cost": {
-    "total_usd": 0.02,
+    "total_usd": 0.035,
     "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
     "last_updated": "2026-07-11"
   },

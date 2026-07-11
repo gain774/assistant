@@ -18,6 +18,10 @@ status: 運用中
 2. APIキーの値をチャット・ログ・コミットに出さない
 3. `log/sns/state.json` の `mistakes_checklist` を読み、投稿案作成時に毎項目照合する
 4. 投稿数の上限は state.json の `posting.daily_range`(現在のランプアップ段階)に従う
+5. **自律運用モード**(CLAUDE.md 参照): 承認・画面操作・課金以外は AI が判断して実行する。
+   運用上の判断・改善を行ったら `log/decisions.md` に記録する(記録してから動く)
+6. **日曜は週次見直し**: 週報作成に加え、runbook / content-strategy / daily-operations を
+   数字に基づいて見直し、改善は自分で反映する(decisions.md に記録)。月初はさらに CLAUDE.md 含む全体棚卸し
 
 ## 手順
 
