@@ -47,6 +47,8 @@ status: 運用中
 
 ### 4. 日次レポート生成
 - `log/sns/templates/daily.md` の形式で `log/sns/daily/YYYY-MM-DD.md` を作成
+- **`plans/goals.md` の日次・週次・月次目標との対比を必ず記載する**(フォロワー進捗、インプ前日比、
+  収益アクションの進捗。未達なら「次の一手」を書く)
 - 振り返り(仮説→結果→学び)を書く。ミスがあれば `mistakes_checklist` に追加
 - **日曜日は週報も作成**(`log/sns/templates/weekly.md` → `log/sns/weekly/YYYY-Www.md`)。
   週報ではランプアップ判断(頻度の維持/増/減)を行い、変更時は state.json の

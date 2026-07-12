@@ -6,6 +6,7 @@
 ## まず読むもの
 - `profile.md` — ユーザーのプロフィール(20代・製造/技術系会社員・開発初心者。行動前に確認を好む)
 - `plans/side-income.md` — 副業戦略(月3〜5万円目標)
+- `plans/goals.md` — **目標体系(必読)**: 月次マイルストーン・週次/日次目標。日次レポートで目標対比を必ず表示
 - `plans/ai-sns-automation.md` — 進行中のメインプロジェクト: Claude による X アカウント自動運用実験
 - `plans/daily-operations.md` — **日次運用の設計書(確定版)**: フロー・投稿頻度・トレンド差分比較・成長戦略・KPI
 - `plans/phase0-setup.md` — セットアップ手順書と進捗
