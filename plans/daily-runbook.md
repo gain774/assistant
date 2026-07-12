@@ -52,7 +52,8 @@ status: 運用中
 - 振り返り(仮説→結果→学び)を書く。ミスがあれば `mistakes_checklist` に追加
 - **日曜日は週報も作成**(`log/sns/templates/weekly.md` → `log/sns/weekly/YYYY-Www.md`)。
   週報ではランプアップ判断(頻度の維持/増/減)を行い、変更時は state.json の
-  `posting` と `ramp_history` を更新する
+  `posting` と `ramp_history` を更新する。あわせて **`plans/next-run-kit.md` に「今週、次回の
+  初回プロンプトに足すべき学びは何か」を自問して追記**する(1ヶ月テストの中核タスク)
 
 ### 5. 投稿案の生成
 - **5本**(第1段階の上限に固定。2026-07-12 の自己監査による)。型カタログから配分し、
