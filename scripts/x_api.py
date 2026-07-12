@@ -87,8 +87,11 @@ def me():
     return request("GET", "/users/me", {"user.fields": "public_metrics,created_at"})
 
 
-def post(text: str):
-    return request("POST", "/tweets", body={"text": text})
+def post(text: str, quote_tweet_id: str | None = None):
+    body = {"text": text}
+    if quote_tweet_id:
+        body["quote_tweet_id"] = quote_tweet_id
+    return request("POST", "/tweets", body=body)
 
 
 def delete(tweet_id: str):
@@ -99,16 +102,31 @@ def metrics(ids: list[str]):
     return request("GET", "/tweets", {"ids": ",".join(ids), "tweet.fields": "public_metrics,created_at"})
 
 
+def user_by_username(username: str):
+    return request("GET", f"/users/by/username/{username}", {"user.fields": "public_metrics"})
+
+
+def user_tweets(user_id: str, max_results: int = 5):
+    # 引用ポストの対象探しに使う(公式・ニュース系アカウントの直近ポスト取得)
+    return request("GET", f"/users/{user_id}/tweets",
+                   {"max_results": str(max_results), "tweet.fields": "public_metrics,created_at",
+                    "exclude": "replies,retweets"})
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "me"
     if cmd == "me":
         status, data = me()
     elif cmd == "post":
-        status, data = post(sys.argv[2])
+        status, data = post(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
     elif cmd == "delete":
         status, data = delete(sys.argv[2])
     elif cmd == "metrics":
         status, data = metrics(sys.argv[2].split(","))
+    elif cmd == "user":
+        status, data = user_by_username(sys.argv[2])
+    elif cmd == "tweets":
+        status, data = user_tweets(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 5)
     else:
         raise SystemExit(f"不明なコマンド: {cmd}")
     print(status)
