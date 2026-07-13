@@ -87,11 +87,49 @@ def me():
     return request("GET", "/users/me", {"user.fields": "public_metrics,created_at"})
 
 
-def post(text: str, quote_tweet_id: str | None = None):
+def post(text: str, quote_tweet_id: str | None = None, media_ids: list[str] | None = None):
     body = {"text": text}
     if quote_tweet_id:
         body["quote_tweet_id"] = quote_tweet_id
+    if media_ids:
+        body["media"] = {"media_ids": media_ids}
     return request("POST", "/tweets", body=body)
+
+
+def upload_media(path: str, category: str = "tweet_image"):
+    # 画像を v2 /2/media/upload にマルチパートでアップロードし media_id を返す。
+    # 画像付き投稿はエンゲージが上がる(2026-07-13 検証済み)。署名は oauth パラメータのみ対象。
+    import uuid
+    with open(path, "rb") as f:
+        raw = f.read()
+    host = API_BASE + "/media/upload"
+    boundary = "----b" + uuid.uuid4().hex
+    parts = []
+
+    def add(name, value, filename=None, ctype=None):
+        h = f'--{boundary}\r\nContent-Disposition: form-data; name="{name}"'
+        if filename:
+            h += f'; filename="{filename}"'
+        h += "\r\n"
+        if ctype:
+            h += f"Content-Type: {ctype}\r\n"
+        h += "\r\n"
+        parts.append(h.encode() + (value if isinstance(value, bytes) else value.encode()) + b"\r\n")
+
+    add("media_category", category)
+    add("media", raw, "img", "image/png")
+    body = b"".join(parts) + f"--{boundary}--\r\n".encode()
+    req = urllib.request.Request(host, method="POST", data=body)
+    req.add_header("Authorization", _oauth_header("POST", host, None))
+    req.add_header("Content-Type", f"multipart/form-data; boundary={boundary}")
+    req.add_header("User-Agent", "assistant-experiment/0.1")
+    opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=_ssl_context()))
+    try:
+        with opener.open(req) as r:
+            data = json.loads(r.read().decode())
+            return r.status, data.get("data", {}).get("id")
+    except urllib.error.HTTPError as e:
+        return e.code, None
 
 
 def delete(tweet_id: str):
@@ -136,6 +174,14 @@ if __name__ == "__main__":
         status, data = user_tweets(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 5)
     elif cmd == "search":
         status, data = search(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 25)
+    elif cmd == "upload":
+        status, mid = upload_media(sys.argv[2])
+        data = {"media_id": mid}
+    elif cmd == "post_image":
+        st, mid = upload_media(sys.argv[3])
+        if not mid:
+            raise SystemExit(f"画像アップロード失敗: HTTP {st}")
+        status, data = post(sys.argv[2], media_ids=[mid])
     else:
         raise SystemExit(f"不明なコマンド: {cmd}")
     print(status)

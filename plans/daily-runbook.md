@@ -54,8 +54,8 @@ status: 運用中
 - 振り返り(仮説→結果→学び)を書く。ミスがあれば `mistakes_checklist` に追加
 - **日曜日は週報も作成**(`log/sns/templates/weekly.md` → `log/sns/weekly/YYYY-Www.md`)。
   週報ではランプアップ判断(頻度の維持/増/減)を行い、変更時は state.json の
-  `posting` と `ramp_history` を更新する。あわせて **`plans/next-run-kit.md`** に次回への学びを追記し、**`plans/monetization-research.md` を
-  更新**(新しいマネタイズ手法・実例を調べて反映。収益はここを根拠に動かす)
+  `posting` と `ramp_history` を更新する。あわせて **`plans/next-run-kit.md`** に次回への学びを追記し、**`plans/monetization-research.md`** と **`plans/tooling-research.md`** を更新
+  (新しいマネタイズ手法・便利ツール/APIを調べ、有望なら実際に叩いて検証してから反映)
 
 ### 5. 投稿案の生成
 - **3本**(量より質+トリガー削減でコスト効率化。2026-07-13)。うち話題便乗型1本・問いかけ型は
