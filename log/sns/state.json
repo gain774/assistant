@@ -6,7 +6,7 @@
     "profile_ready": true,
     "profile_note": "bio・固定ポスト・アイコンすべて 2026-07-11 に v1.1 API で設定済み(bot 開示済み)。残る画面操作は自動化ラベルのみ(公開APIなし・本人待ち)"
   },
-  "phase": "A",
+  "phase": "B",
   "posting": {
     "ramp_stage": 1,
     "daily_range": [
@@ -109,6 +109,15 @@
       "text_head": "AI運用実験 Day2 の数字。",
       "metrics": null,
       "note": "承認済み5本の1本目(予定08:15、承認が08:54のため即時投稿)"
+    },
+    {
+      "id": "2076494258811322422",
+      "date": "2026-07-13",
+      "time_jst": "11:29",
+      "type": "話題便乗型(Anthropic研究)",
+      "text_head": "Anthropic が「Claude が何を考えているかを読み解く」研究を発表していました。",
+      "metrics": null,
+      "note": "引用不可のため単独ポストに変更。承認済み"
     }
   ],
   "research_cache": {
@@ -179,7 +188,7 @@
     }
   ],
   "cost": {
-    "total_usd": 0.124,
+    "total_usd": 0.139,
     "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
     "last_updated": "2026-07-13"
   },
