@@ -59,6 +59,22 @@ status: 運用中(週次で更新)
 **不要と確定**: `upload.twitter.com`(api.x.com の v2 upload で代替済み)/ トレンド・ニュース直サイト
 (trends24 等は WebSearch で代替)
 
+## コネクタ台帳(2026-07-13 レジストリ全数確認・「後から言わない」ための記録)
+| コネクタ | 判定 | 理由/発動条件 |
+|---|---|---|
+| Gmail | ✅必要・接続済 | 認証メール読み取り |
+| GitHub(MCP) | ✅必要・接続済 | リポジトリ管理 |
+| Claude Code Remote(MCP) | ✅必要・接続済 | Routine・通知(自動運用の心臓) |
+| Canva | ⏳将来 | 画像品質を上げる/カルーセル作成をしたくなったら。今は PIL で足りる |
+| Stripe / PayPal | ⏳将来 | Zenn/Gumroad でなく**自分で直接決済販売**する場合。トークン認証でブラウザ不要 |
+| Figma / Google Calendar / Google Drive | ❌不要 | 用途なし(資産はリポジトリで代替) |
+| Supermetrics 等 広告分析 | ❌不要 | 有料広告向け。オーガニックX運用に不要 |
+| 金融/TikTok Shop 等 | ❌不要 | 事業領域外 |
+| **X(Twitter)専用** | 〇自作でカバー | レジストリに存在せず。`x_api.py` の方が軽量・柔軟 |
+| **Zenn / note / Gumroad / Buffer** | 〇非コネクタで対応 | コネクタ無し。Zenn=git公開 / Gumroad=API(要ネット許可) / スケジュール=Routine |
+
+→ **今すぐ繋ぐべき追加コネクタは無し**。発動条件に達したら該当行を実行する(その時に自分で判断)。
+
 ## 調査の進め方(継続ルール)
 - 週次で「X で実運用者が使っているツール」を `x_api.py search` で拾い、有望なら**実際に叩いて検証**
 - 使えたものは上表に追加し、投稿/収益に効くものは content-strategy / goals に反映
