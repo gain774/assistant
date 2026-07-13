@@ -41,6 +41,24 @@ status: 運用中(週次で更新)
 - リサーチは価値の高いものに集中。search は max_results を絞る
 - ドキュメントはスクリプト追記で全文読み直しを避ける
 
+## ネットワーク許可の全数実測(2026-07-13)
+※重要: **リサーチは WebSearch ツールで可能**(直接 curl がブロックでも WebSearch は通る)。
+下の「BLOCK」はプログラム直アクセスの可否であり、情報収集そのものは止まらない。
+
+**現在OK(追加不要)**: api.x.com / api.twitter.com / github.com / api.github.com / pypi.org / googleapis.com / note.com
+
+**開けてほしい(プラン上必要・優先順)**:
+| ドメイン | 用途 | 優先 |
+|---|---|---|
+| `zenn.dev` | 収益の主軸(公開はgit経由で可だが、公開結果の確認・Zenn APIに必要) | 高 |
+| `api.gumroad.com` | 自動化可能な有料販売(トークン認証・ブラウザ不要)。Zennの保険 | 高 |
+| `af.moshimo.com` `www.a8.net` `www.valuecommerce.ne.jp` | アフィリエイトASP。※リンク取得はダッシュボード(人間ログイン)要 | 中 |
+| `www.amazon.co.jp` `www.rakuten.co.jp` | アフィリエイト商品/リンク確認 | 中 |
+| `api.x.ai` | Grok API(補助的な文章生成に使える可能性・要検証) | 低 |
+
+**不要と確定**: `upload.twitter.com`(api.x.com の v2 upload で代替済み)/ トレンド・ニュース直サイト
+(trends24 等は WebSearch で代替)
+
 ## 調査の進め方(継続ルール)
 - 週次で「X で実運用者が使っているツール」を `x_api.py search` で拾い、有望なら**実際に叩いて検証**
 - 使えたものは上表に追加し、投稿/収益に効くものは content-strategy / goals に反映
