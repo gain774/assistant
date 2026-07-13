@@ -41,6 +41,8 @@ status: 運用中
 
 ### 3. トレンドリサーチと差分比較
 - WebSearch で当日の話題をリサーチ(AI・自動化・SNS運用まわり+一般トレンド)
+- **X API の一次リサーチも使う**: `python3 scripts/x_api.py search "AI SNS 運用 -is:retweet lang:ja"` で
+  ニッチの実際の投稿を集め、エンゲージ上位の型・冒頭フックを投稿案に反映(二次情報のブログだけに頼らない)
 - state.json の `research_cache`(前日分)と比較し、daily-operations.md 3-2 の表に従い判断:
   持続トレンド=解説系に / 当日のみ=鮮度勝負 / 消えた=原則破棄 / 両方有望=両方使う
 - 当日のリサーチ結果を `research_cache` に上書き保存

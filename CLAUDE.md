@@ -35,7 +35,7 @@
 
 ## ツール
 - `scripts/x_api.py` — X API クライアント(OAuth 1.0a、標準ライブラリのみ):
-  `me | post "text" [quote_id] | delete <id> | metrics <id,...> | user <username> | tweets <user_id>`
+  `me | post "text" [quote_id] | delete <id> | metrics <id,...> | user <name> | tweets <uid> | search "query"`
 - metrics は複数ID同時だと503になることがある → 単一IDに分割してリトライ
 - `scripts/test_connection.py` — 接続テスト一式
 

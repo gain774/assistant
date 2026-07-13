@@ -106,6 +106,13 @@ def user_by_username(username: str):
     return request("GET", f"/users/by/username/{username}", {"user.fields": "public_metrics"})
 
 
+def search(query: str, max_results: int = 25):
+    # 直近の投稿を検索(ニッチ調査・伸びてる投稿の分析に使う)。lang:ja -is:retweet 等が使える
+    return request("GET", "/tweets/search/recent",
+                   {"query": query, "max_results": str(max_results),
+                    "tweet.fields": "public_metrics,created_at"})
+
+
 def user_tweets(user_id: str, max_results: int = 5):
     # 引用ポストの対象探しに使う(公式・ニュース系アカウントの直近ポスト取得)
     return request("GET", f"/users/{user_id}/tweets",
@@ -127,6 +134,8 @@ if __name__ == "__main__":
         status, data = user_by_username(sys.argv[2])
     elif cmd == "tweets":
         status, data = user_tweets(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 5)
+    elif cmd == "search":
+        status, data = search(sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else 25)
     else:
         raise SystemExit(f"不明なコマンド: {cmd}")
     print(status)
