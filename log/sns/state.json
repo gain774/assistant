@@ -116,7 +116,12 @@
       "time_jst": "08:54",
       "type": "数字公開型",
       "text_head": "AI運用実験 Day2 の数字。",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-14",
+        "impressions": 5,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "承認済み5本の1本目(予定08:15、承認が08:54のため即時投稿)"
     },
     {
@@ -125,7 +130,12 @@
       "time_jst": "11:29",
       "type": "話題便乗型(Anthropic研究)",
       "text_head": "Anthropic が「Claude が何を考えているかを読み解く」研究を発表していました。",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-14",
+        "impressions": 3,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "引用不可のため単独ポストに変更。承認済み"
     },
     {
@@ -134,37 +144,46 @@
       "time_jst": "12:30",
       "type": "話題便乗型(OpenAI農家)",
       "text_head": "ブロッコリー農家が GPT-5.6 で農場を運営する事例が話題でした。",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-14",
+        "impressions": 3,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "単独ポスト。本日3本目=新上限のため案4・案5は取消"
+    },
+    {
+      "id": "2076790027804147958",
+      "date": "2026-07-14",
+      "time_jst": "07:12",
+      "type": "保存誘発型(画像+ハッシュタグ)",
+      "text_head": "AIにSNS運用を任せて3日・5つの現実(画像)",
+      "metrics": null,
+      "note": "新レバー実験:画像付き保存誘発+#3個。画像コスト込み概算+0.02"
     }
   ],
   "research_cache": {
-    "date": "2026-07-13",
+    "date": "2026-07-14",
     "topics": [
       {
-        "topic": "国産AI基盤モデル Noetra 始動・NTT tsuzumi 2",
+        "topic": "Grok 4.5 / テスラ車載Grok",
         "relevance": "高",
-        "note": "7/13案4で使用"
+        "note": "7/14夜に使用"
       },
       {
-        "topic": "OpenAI GPT-5.6 日本人農家事例(97万インプ)",
+        "topic": "Claude Cowork モバイル展開",
         "relevance": "高",
-        "note": "7/13案3で引用"
+        "note": "7/14夜に使用"
       },
       {
-        "topic": "Anthropic J-space(Claudeの思考を読む研究)",
-        "relevance": "高",
-        "note": "7/13案2で引用"
-      },
-      {
-        "topic": "AIエージェント(LINE Agent i)",
+        "topic": "GPT-5.6一般公開",
         "relevance": "中",
-        "note": "減衰・在庫"
+        "note": "在庫"
       },
       {
-        "topic": "富士通PHOTON/三菱自ロボット",
+        "topic": "国産AI Noetra",
         "relevance": "中",
-        "note": "在庫継続"
+        "note": "在庫"
       }
     ]
   },
@@ -206,9 +225,9 @@
     }
   ],
   "cost": {
-    "total_usd": 0.154,
+    "total_usd": 0.174,
     "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
-    "last_updated": "2026-07-13"
+    "last_updated": "2026-07-14"
   },
   "kpi": {
     "followers": 0,
