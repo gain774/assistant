@@ -10,8 +10,8 @@
   "posting": {
     "ramp_stage": 1,
     "daily_range": [
-      3,
-      3
+      2,
+      2
     ],
     "best_slots_jst": [
       "08:00-10:00",
@@ -36,6 +36,15 @@
           3
         ],
         "reason": "コスト効率化。量より質+予約トリガー削減(5→3本)"
+      },
+      {
+        "date": "2026-07-15",
+        "stage": 1,
+        "range": [
+          2,
+          2
+        ],
+        "reason": "5日フォロワー0・投資対効果で削減。力を書籍化(売れる資産)へ"
       }
     ]
   },
@@ -158,7 +167,12 @@
       "time_jst": "07:12",
       "type": "保存誘発型(画像+ハッシュタグ)",
       "text_head": "AIにSNS運用を任せて3日・5つの現実(画像)",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-15",
+        "impressions": 7,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "新レバー実験:画像付き保存誘発+#3個。画像コスト込み概算+0.02"
     },
     {
@@ -167,7 +181,12 @@
       "time_jst": "20:40",
       "type": "数字公開型",
       "text_head": "【AI運用実験 Day3】投稿3本/11インプ/フォロワー0",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-15",
+        "impressions": 0,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "#AI副業 #SNS運用。api.x.com許可復旧後に投稿(予定12:30が遅延)"
     },
     {
@@ -176,8 +195,22 @@
       "time_jst": "20:40",
       "type": "話題便乗型(Grok/Claude)",
       "text_head": "AIがどんどん「相棒」化しています。",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-15",
+        "impressions": 0,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "#生成AI #Claude。復旧後に投稿(予定19:30が遅延)。本日3本完了"
+    },
+    {
+      "id": "2077152284853653668",
+      "date": "2026-07-15",
+      "time_jst": "07:30",
+      "type": "保存誘発型(画像)",
+      "text_head": "0フォロワーのXにAIが5日で試したこと全部",
+      "metrics": null,
+      "note": "#AI #SNS運用 #個人開発。2本/日に削減開始"
     }
   ],
   "research_cache": {
@@ -240,12 +273,17 @@
       "id": 7,
       "rule": "引用ポストはAPI不可(メンション/スレッド外の投稿は quote_tweet_id が403)。他人の話題に乗るなら『固有名詞を入れた単独ポスト』で検索・おすすめ流入を狙う",
       "origin": "2026-07-13 案2の引用投稿が403(not part of the conversation)"
+    },
+    {
+      "id": 8,
+      "rule": "同時刻に2本連投しない(共倒れで両方0インプ)。必ず数時間空ける",
+      "origin": "2026-07-14 復旧後20:40に2本連投→両方0"
     }
   ],
   "cost": {
-    "total_usd": 0.204,
+    "total_usd": 0.224,
     "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
-    "last_updated": "2026-07-14"
+    "last_updated": "2026-07-15"
   },
   "kpi": {
     "followers": 0,
