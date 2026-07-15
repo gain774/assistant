@@ -209,8 +209,22 @@
       "time_jst": "07:30",
       "type": "保存誘発型(画像)",
       "text_head": "0フォロワーのXにAIが5日で試したこと全部",
-      "metrics": null,
+      "metrics": {
+        "as_of": "2026-07-16",
+        "impressions": 4,
+        "likes": 0,
+        "replies": 0
+      },
       "note": "#AI #SNS運用 #個人開発。2本/日に削減開始"
+    },
+    {
+      "id": "2077514506389832086",
+      "date": "2026-07-16",
+      "time_jst": "07:30",
+      "type": "実況型(書籍化予告)",
+      "text_head": "AI運用実験 Day6。フォロワーはまだ0です。",
+      "metrics": null,
+      "note": "#AI #個人開発 #AI副業。書籍化を予告。本日X1本(書籍化に注力)"
     }
   ],
   "research_cache": {
@@ -281,9 +295,9 @@
     }
   ],
   "cost": {
-    "total_usd": 0.224,
+    "total_usd": 0.239,
     "note": "投稿$0.015/件、メトリクス$0.001/リソースで概算加算",
-    "last_updated": "2026-07-15"
+    "last_updated": "2026-07-16"
   },
   "kpi": {
     "followers": 0,
