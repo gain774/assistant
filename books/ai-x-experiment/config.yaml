@@ -1,0 +1,19 @@
+# Zenn Book 設定(連携リポジトリに置けば git push で公開できる)
+title: "AIにXアカウントを丸ごと任せたら、フォロワーは増えたのか"
+summary: |
+  Claude(AI)にX(旧Twitter)アカウントの運用を丸ごと任せる1ヶ月の公開実験。
+  投稿の作成・分析・改善・戦略変更まで全部AIが判断し、人間は承認と課金だけ。
+  数字は良くても悪くてもそのまま公開する。この本は、その全記録・全失敗・全判断を
+  一次データ付きでまとめたもの。「AIで自動化すれば伸びる/稼げる」の実際を、
+  盛らずに検証したい人へ。
+topics: ["AI", "SNS運用", "個人開発", "Claude", "自動化"]
+published: false          # 準備が整ったら true(git push で公開)
+price: 500                # 有料(¥500)。無料公開章 free: true を数章置いて集客
+chapters:
+  - 00-intro
+  - 01-setup
+  - 02-first-posts
+  - 03-what-broke
+  - 04-numbers
+  - 05-monetization
+  - 06-lessons
